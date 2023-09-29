@@ -21,8 +21,8 @@ main(){
 
     c) qual a média de acidentes com vítimas entre as cidades do Rio Grande do Sul.*/
 
-    char cidade = 200;
-    char maiorCidade, menorCidade;
+    	char cidade = 200;
+    	char maiorCidade, menorCidade;
 	int numeroDeVeiculos, cd, numeroDeAcidentes,terminar;
 	int mediaCidade, mediaVeiculo = 0,mediaAcidente,mediaVeiculosRS,mediaAcidenteRS;
 	float indice,maiorIndice,menorIndice,media,mediaRS, RS;
