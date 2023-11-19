@@ -1,9 +1,10 @@
-#include<stdio.h>
+#include <stdio.h>
 
-main(){
+main()
+{
 
     /*Em uma eleição presidencial existem quatro candidatos. Os votos são informados através de códigos.
-     Os dados utilizados para a contagem dos votos obedecem à seguinte codificação:  
+     Os dados utilizados para a contagem dos votos obedecem à seguinte codificação:
 
     - 1,2,3,4 = voto para os respectivos candidatos;
 
@@ -21,34 +22,55 @@ main(){
 
     Como finalizador do conjunto de votos, tem-se o valor 0*/
 
-    int candidato1, candidato2, candidato3, candidato4, voto = 0;
-    float votoNulo, votoBranco;
+    int candidato1 = 0, candidato2 = 0, candidato3 = 0, candidato4 = 0;
+    int votoNulo = 0, votoBranco = 0;
+    int voto;
 
-    printf("informe os votos para os respectivos candidatos");
+    printf("digite o numero do seu candidado:(ou 5 para voto nulo e 6 para voto em branco)");
 
-   while (voto != 0){
-   scanf("%d", &voto);
-        if (voto == 1)
-            printf("Você votou no candidato numero 1");  
-        candidato1++;
-        if (voto == 2)
-        printf("Você votou no candidato numero 2");
-        candidato2++;
-        if (voto == 3)
-        printf("Você votou no candidato numero 3");
-        candidato3++;
-    }
-    
-    while (voto != 1,2,3,4){
-        if (voto == 5)
-            printf("Você votou nulo");
+    do
+    {
+        // ler o voto de todos os candidatos
+        scanf("%d", &voto);
+
+        // classificar os votos
+        switch (voto)
+        {
+        case 1:
+            candidato1++;
+            break;
+        case 2:
+            candidato2++;
+            break;
+        case 3:
+            candidato3++;
+            break;
+        case 4:
+            candidato4++;
+            break;
+        case 5:
             votoNulo++;
-        if (voto == 6)
-            printf("Você votou em branco");
+            break;
+        case 6:
             votoBranco++;
-    }
-        
-}
-    
+            break;
+        case 0;
+            break;
+            default:
+            printf("codigo invalido: tente novamente");
+        }
+    } while (voto != 0);
 
+    // imprimir resultados da votação
+    printf("\nResultado:\n");
+    printf("Candidato 1: %d votos", candidato1);
+    printf("Candidato 2: %d votos", candidato2);
+    printf("Candidato 3: %d votos", candidato3);
+    printf("Candidato 4: %d votos", candidato4);
+    printf("Votos Nulos %d votos", votoNulo);
+    printf("Votos em branco: %d votos", votoBranco);
+}
+
+
+  
  
