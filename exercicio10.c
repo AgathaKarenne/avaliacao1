@@ -1,91 +1,86 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
-main(){
+#define CIDADES 200
 
-    /*Foi feita uma estatística nas 200 principais cidades brasileiras para coletar dados sobre acidentes de trânsito. Foram obtidos os seguintes dados:  
+/*Foi feita uma estatística nas 200 principais cidades brasileiras para coletar dados sobre acidentes de trânsito. Foram obtidos os seguintes dados:
 
-    - código da cidade
+- código da cidade
 
-    - estado (RS, SC, PR, SP, RJ, ...)
-    rio grande do sul, santa catarina, parana,sao paulo, rio de janeiro
-    - número de veículos de passeio (em 1992)
+- estado (RS, SC, PR, SP, RJ, ...)
+rio grande do sul, santa catarina, parana,sao paulo, rio de janeiro
+- número de veículos de passeio (em 1992)
 
-    - número de acidentes de trânsito com vítimas (em 1992)
+- número de acidentes de trânsito com vítimas (em 1992)
 
-    Deseja-se saber:
+Deseja-se saber:
 
-    a) qual o maior e o menor índice de acidentes de trânsito e a que cidades pertencem
+a) qual o maior e o menor índice de acidentes de trânsito e a que cidades pertencem
 
-    b) qual a média de veículos nas cidades brasileiras
+b) qual a média de veículos nas cidades brasileiras
 
-    c) qual a média de acidentes com vítimas entre as cidades do Rio Grande do Sul.*/
+c) qual a média de acidentes com vítimas entre as cidades do Rio Grande do Sul.*/
 
-    	char cidade = 200;
-    	char maiorCidade, menorCidade;
-	int numeroDeVeiculos, cd, numeroDeAcidentes,terminar;
-	int mediaCidade, mediaVeiculo = 0,mediaAcidente,mediaVeiculosRS,mediaAcidenteRS;
-	float indice,maiorIndice,menorIndice,media,mediaRS, RS;
+int main()
+{
+	// Inicialização dos arrays para armazenar os dados
+	int codigos[CIDADES];
+	int veiculos[CIDADES];
+	int acidentes[CIDADES];
 
-	while(terminar!=0)
+	// Leitura dos dados das cidades
+	for (int i = 0; i < CIDADES; i++)
 	{
+		printf("Cidade %d:\n", i + 1);
+		printf("Código: ");
+		scanf("%d", &codigos[i]);
+		printf("Número de veículos de passeio (em 1992): ");
+		scanf("%d", &veiculos[i]);
+		printf("Número de acidentes com vítimas (em 1992): ");
+		scanf("%d", &acidentes[i]);
+	}
 
-		printf("\nQual o codigo da cidade");
-		scanf("%s",&cd);
-		printf("\nDigite o numero de veiculos");
-		scanf("%d",&numeroDeVeiculos);
-		printf("\nDigite o numero de acidentes");
-		scanf("%d",&numeroDeAcidentes);
-
-		cidade++;
-
-		if (numeroDeVeiculos > 0)
-			mediaVeiculo = mediaVeiculo + numeroDeVeiculos;
-
-		if(mediaAcidente > 0)
-			mediaAcidente = mediaAcidente + numeroDeAcidentes;       
-
-		indice = numeroDeAcidentes / numeroDeVeiculos;
-
-        if(cidade==0)                 
+	// a) Encontrar o maior e o menor índice de acidentes de trânsito
+	int maiorIndice = 0, menorIndice = 0;
+	for (int i = 1; i < CIDADES; i++)
+	{
+		if ((float)acidentes[i] / veiculos[i] > (float)acidentes[maiorIndice] / veiculos[maiorIndice])
 		{
-			maiorCidade=cidade;
-			maiorIndice=indice;
-			menorCidade=indice;
-			menorIndice=cidade;
-
+			maiorIndice = i;
 		}
-
-		if(indice>maiorIndice)
+		if ((float)acidentes[i] / veiculos[i] < (float)acidentes[menorIndice] / veiculos[menorIndice])
 		{
-			maiorCidade=cidade;
-			maiorIndice=indice; 
-		}  
-		if(indice<menorIndice)
-		{              
-			menorCidade=cidade;
-			menorIndice=indice;                 
-		}              
-		media=mediaVeiculo/mediaCidade;
+			menorIndice = i;
+		}
+	}
 
-			if(cidade == RS){
-			mediaVeiculosRS = mediaVeiculosRS + mediaVeiculo;
-			mediaAcidenteRS = mediaAcidenteRS + mediaAcidente;
-			mediaRS = mediaVeiculosRS/mediaAcidenteRS;
-	    }
-		printf("Digite 0 para terminar e ver o resultado e 1 para continuar o formulario");
-		scanf("%d",&terminar);
+	printf("\na) Maior índice de acidentes de trânsito: Cidade %d", codigos[maiorIndice]);
+	printf("   Menor índice de acidentes de trânsito: Cidade %d", codigos[menorIndice]);
 
-    } 
+	// b) Calcular a média de veículos nas cidades brasileiras
+	int somaVeiculos = 0;
+	for (int i = 0; i < CIDADES; i++)
+	{
+		somaVeiculos += veiculos[i];
+	}
+	float mediaVeiculos = (float)somaVeiculos / CIDADES;
 
+	printf("\nb) Média de veículos nas cidades brasileiras: %.2f\n", mediaVeiculos);
 
-	printf("\nA cidade que possui maior indice de acidente foi:%s",maiorCidade);
-	printf("\nSeu indice foi: %5.2f",maiorIndice);
-	printf("\nA cidade que possui menor indice de acidente foi:%s",menorCidade);
-	printf("\nSeu indice foi:%5.2f",menorIndice);
-	printf("\nA media de veiculos nas cidades brasileiras e:%5.2f",media);
-	printf("\nA media de acidentes no estado do Pernambuco foi:%5.2f",mediaRS);
-	getchar();
-	getchar();
+	// c) Calcular a média de acidentes com vítimas entre as cidades do Rio Grande do Sul
+	int somaAcidentesRS = 0;
+	int numCidadesRS = 0;
+	for (int i = 0; i < CIDADES; i++)
+	{
+		if (strcmp(codigos[i], "RS") == 0)
+		{
+			somaAcidentesRS += acidentes[i];
+			numCidadesRS++;
+		}
+	}
+	float mediaAcidentesRS = (float)somaAcidentesRS / numCidadesRS;
 
+	printf("\nc) Média de acidentes com vítimas nas cidades do Rio Grande do Sul: %.2f\n", mediaAcidentesRS);
+
+	return 0;
 }
