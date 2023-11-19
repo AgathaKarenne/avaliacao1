@@ -54,7 +54,7 @@ main()
         case 6:
             votoBranco++;
             break;
-        case 0;
+        case 0:
             break;
             default:
             printf("codigo invalido: tente novamente");
