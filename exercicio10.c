@@ -81,6 +81,4 @@ int main()
 	float mediaAcidentesRS = (float)somaAcidentesRS / numCidadesRS;
 
 	printf("\nc) Média de acidentes com vítimas nas cidades do Rio Grande do Sul: %.2f\n", mediaAcidentesRS);
-
-	return 0;
 }
