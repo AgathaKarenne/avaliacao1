@@ -1,16 +1,22 @@
 #include <stdio.h>
 #include <math.h>
 
-float calculaDistancia(int x1, int y1, int x2, int y2) {
-    sqrt( pow(x2-x1, 2) + pow(y2-y1, 2) );
-}
-
-int main()
+// 5. Leia os quatro valores correspondentes aos eixos x e y de dois pontos quaisquer no plano,
+//  p1(x1, y1) e p2(x2, y2) e calcule a distância entre eles, mostrando 4 casas decimais após a vírgula, segundo a fórmula:
+main()
 {
-    int x1,x2,y1,y2;
-    float distancia;
-    do {
-        scanf("%i %i %i %i", &x1, &y1, &x2, &y2);
-        distancia = calculaDistancia(x1,y1,x2,y2);
-    } while (distancia == 0);
+
+    float x1, y1, x2, y2;
+
+    printf("Informe as coodernadas de p1 (x1 , y1):");
+    scanf("%f %f", &x1, &y1);
+
+    printf("Informe as coodernadas de p2 (x2 , y2):");
+    scanf("%f %f", &x2, &y2);
+
+    // calcular distancia
+    float distancia = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+
+    // mostrar resultado
+    printf("A distancia de p1 e p2 e: %.4f\n", distancia);
 }
