@@ -39,6 +39,4 @@ main()
 
     mediaGeral /= numerosDeAlunos;
     printf("\nMédia Geral da Turma: %.2f\n", mediaGeral);
-
-    return 0;
 }
