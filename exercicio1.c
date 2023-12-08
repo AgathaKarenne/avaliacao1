@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 
-int main() {
+main() {
 
     //Criar um algoritmo que receba o valor de x, e calcule e imprima o valor de f(x).
 
